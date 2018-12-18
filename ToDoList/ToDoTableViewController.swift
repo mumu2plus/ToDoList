@@ -51,10 +51,24 @@ class ToDoTableViewController: UITableViewController {
         let sourceViewController = segue.source as! ToDoViewController
         
         if let todo = sourceViewController.todo {
-            let newIndexPath = IndexPath(row: todos.count, section: 0)
-            
-            todos.append(todo)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            if let selectedIndexPath =
+                tableView.indexPathForSelectedRow {
+                todos[selectedIndexPath.row] = todo
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                let newIndexPath = IndexPath(row: todos.count, section: 0)
+                todos.append(todo)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails" {
+            let todoViewController = segue.destination as! ToDoViewController
+            let indexPath = tableView.indexPathForSelectedRow!
+            let selectedTodo = todos[indexPath.row]
+            todoViewController.todo = selectedTodo
         }
     }
 }
