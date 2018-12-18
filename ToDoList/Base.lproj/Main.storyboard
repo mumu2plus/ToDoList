@@ -18,14 +18,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCellIdentifier" id="KHa-2A-yOH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCellIdentifier" id="KHa-2A-yOH" customClass="ToDoCell" customModule="ToDoList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KHa-2A-yOH" id="OJ1-LM-1bO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrC-zB-ocB">
+                                            <rect key="frame" x="8" y="4" width="36" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="I4u-dS-Stv"/>
+                                                <constraint firstAttribute="width" constant="36" id="tuS-FR-QRX"/>
+                                            </constraints>
+                                            <state key="normal" image="Unchecked"/>
+                                            <state key="selected" image="Checked"/>
+                                            <connections>
+                                                <action selector="completeButtonTapped:" destination="KHa-2A-yOH" eventType="touchUpInside" id="aHO-To-wga"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fck-Mo-eBb">
+                                            <rect key="frame" x="52" y="11.5" width="299" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fck-Mo-eBb" firstAttribute="leading" secondItem="yrC-zB-ocB" secondAttribute="trailing" constant="8" id="Agj-fh-0dq"/>
+                                        <constraint firstItem="yrC-zB-ocB" firstAttribute="centerY" secondItem="OJ1-LM-1bO" secondAttribute="centerY" id="I0D-nF-c1P"/>
+                                        <constraint firstItem="fck-Mo-eBb" firstAttribute="centerY" secondItem="OJ1-LM-1bO" secondAttribute="centerY" id="QGN-Lu-lU8"/>
+                                        <constraint firstItem="yrC-zB-ocB" firstAttribute="leading" secondItem="OJ1-LM-1bO" secondAttribute="leading" constant="8" id="cIf-Ok-xph"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fck-Mo-eBb" secondAttribute="trailing" constant="8" id="kWs-3Z-YtO"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="isCompleteButton" destination="yrC-zB-ocB" id="8Pw-ih-5MI"/>
+                                    <outlet property="titleLabel" destination="fck-Mo-eBb" id="W5x-gS-wUs"/>
                                     <segue destination="ral-if-KaQ" kind="show" identifier="showDetails" id="VMv-pK-E1H"/>
                                 </connections>
                             </tableViewCell>
